@@ -69,25 +69,76 @@
     .time-buttons button:hover {
       background-color: #ccc;
     }
+    .language-switch {
+      position: absolute;
+      left: 40px;
+      top: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   </style>
 </head>
 <body>
   <div class="screen">
     <div class="brand">PERSONA</div>
-    <div class="title">Meeting Room-A01</div>
+    <div class="title" id="room-title">Meeting Room-A01</div>
     <div class="time" id="current-time"></div>
 
-    <button class="quick-book" onclick="alert('Booked!')">QUICK BOOKING</button>
+    <button class="quick-book" id="quick-book-btn" onclick="window.location.href='book.html'">QUICK BOOKING</button>
 
     <div class="time-buttons">
-      <button onclick="bookTime(30)">30 Mins</button>
-      <button onclick="bookTime(60)">60 Mins</button>
-      <button onclick="bookTime(90)">90 Mins</button>
-      <button onclick="bookTime(120)">120 Mins</button>
+      <button id="btn30" onclick="bookTime(30)">30 Mins</button>
+      <button id="btn60" onclick="bookTime(60)">60 Mins</button>
+      <button id="btn90" onclick="bookTime(90)">90 Mins</button>
+      <button id="btn120" onclick="bookTime(120)">120 Mins</button>
+    </div>
+
+    <div class="language-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('jp')">日本語</button>
     </div>
   </div>
 
   <script>
+    const translations = {
+      en: {
+        title: 'Meeting Room-A01',
+        quick: 'QUICK BOOKING',
+        btn30: '30 Mins',
+        btn60: '60 Mins',
+        btn90: '90 Mins',
+        btn120: '120 Mins'
+      },
+      zh: {
+        title: '會議室-A01',
+        quick: '快速預約',
+        btn30: '30分鐘',
+        btn60: '60分鐘',
+        btn90: '90分鐘',
+        btn120: '120分鐘'
+      },
+      jp: {
+        title: '会議室-A01',
+        quick: 'クイック予約',
+        btn30: '30分',
+        btn60: '60分',
+        btn90: '90分',
+        btn120: '120分'
+      }
+    };
+
+    function setLang(lang) {
+      const t = translations[lang];
+      document.getElementById('room-title').innerText = t.title;
+      document.getElementById('quick-book-btn').innerText = t.quick;
+      document.getElementById('btn30').innerText = t.btn30;
+      document.getElementById('btn60').innerText = t.btn60;
+      document.getElementById('btn90').innerText = t.btn90;
+      document.getElementById('btn120').innerText = t.btn120;
+    }
+
     function updateTime() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
@@ -96,8 +147,14 @@
     }
 
     function bookTime(minutes) {
-      alert(`You booked the room for ${minutes} minutes.`);
+      window.location.href='book.html';
     }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+</html>
 
     setInterval(updateTime, 1000);
     updateTime();
