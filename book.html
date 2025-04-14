@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Room Info</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .screen {
+      background: white;
+      border: 10px solid #f57c00;
+      width: 800px;
+      height: 500px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      padding: 40px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .brand {
+      font-weight: bold;
+      font-size: 20px;
+      color: #000;
+    }
+    .title {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+    .time {
+      position: absolute;
+      right: 40px;
+      top: 40px;
+      font-size: 24px;
+      color: #333;
+    }
+    .description {
+      margin-top: 40px;
+      font-size: 22px;
+      color: #f57c00;
+      font-weight: bold;
+    }
+    .checkin-button {
+      position: absolute;
+      right: 60px;
+      bottom: 60px;
+      padding: 25px 30px;
+      background-color: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    .checkin-button:hover {
+      background-color: #ef6c00;
+    }
+    .language-switch {
+      position: absolute;
+      left: 40px;
+      bottom: 30px;
+    }
+    .language-switch button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="brand">PERSONA</div>
+    <div class="title" id="room-title">Meeting Room-A01</div>
+    <div class="time">11:00 AM</div>
+
+    <div class="description" id="meeting-info">
+      Budget Review<br>
+      Starts in 5 min<br>
+      by PERSONA
+    </div>
+
+    <button class="checkin-button" id="checkin-btn" onclick="alert('Checked in!')">CHECK<br>IN</button>
+
+    <div class="language-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('jp')">日本語</button>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        room: 'Meeting Room-A01',
+        info: 'Budget Review<br>Starts in 5 min<br>by PERSONA',
+        checkin: 'CHECK<br>IN'
+      },
+      zh: {
+        room: '會議室-A01',
+        info: '預算審查<br>5分鐘後開始<br>主辦單位：PERSONA',
+        checkin: '簽到'
+      },
+      jp: {
+        room: '会議室-A01',
+        info: '予算レビュー<br>5分後に開始<br>主催：PERSONA',
+        checkin: 'チェックイン'
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById('room-title').innerHTML = translations[lang].room;
+      document.getElementById('meeting-info').innerHTML = translations[lang].info;
+      document.getElementById('checkin-btn').innerHTML = translations[lang].checkin;
+    }
+  </script>
+</body>
+</html>
