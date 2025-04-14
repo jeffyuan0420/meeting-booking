@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Room Ongoing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .screen {
+      background: white;
+      border: 10px solid #d32f2f;
+      width: 800px;
+      height: 500px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      padding: 40px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .brand {
+      font-weight: bold;
+      font-size: 20px;
+      color: #000;
+    }
+    .title {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+    .timebar {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bar {
+      height: 50px;
+      width: 400px;
+      background: linear-gradient(to right, #d32f2f 50%, #212121 50%);
+      border-radius: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .status {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      font-size: 20px;
+      font-weight: bold;
+      color: #d32f2f;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .checkout-button {
+      position: absolute;
+      right: 60px;
+      top: 40px;
+      background: #d32f2f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    .checkout-button:hover {
+      background-color: #b71c1c;
+    }
+    .language-switch {
+      position: absolute;
+      top: 200px;
+      left: 40px;
+    }
+    .language-switch button {
+      margin: 5px 0;
+      display: block;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="brand">PERSONA</div>
+    <div class="title" id="room-title">Meeting Room-A01</div>
+    <button class="checkout-button" id="checkout-btn" onclick="window.location.href='index.html'">Check<br>Out</button>
+
+    <div class="timebar">
+      <div class="bar">
+        <span>12:00</span>
+        <span>14:00</span>
+      </div>
+    </div>
+
+    <div class="status">
+      <div id="meeting-name">Budget Review</div>
+      <div id="meeting-end">Ends in 15 min</div>
+    </div>
+
+    <div class="language-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('jp')">日本語</button>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        room: 'Meeting Room-A01',
+        name: 'Budget Review',
+        end: 'Ends in 15 min',
+        btn: 'Check<br>Out'
+      },
+      zh: {
+        room: '會議室-A01',
+        name: '預算審查',
+        end: '15分鐘後結束',
+        btn: '結束<br>會議'
+      },
+      jp: {
+        room: '会議室-A01',
+        name: '予算レビュー',
+        end: '15分後に終了',
+        btn: 'チェック<br>アウト'
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById('room-title').innerHTML = translations[lang].room;
+      document.getElementById('meeting-name').innerHTML = translations[lang].name;
+      document.getElementById('meeting-end').innerHTML = translations[lang].end;
+      document.getElementById('checkout-btn').innerHTML = translations[lang].btn;
+    }
+  </script>
+</body>
+</html>
